@@ -1,5 +1,10 @@
 using DifferentialEquations,BoundaryValueDiffEq,OrdinaryDiffEq;
 
+function my_normalize(x,y)
+    integral=sum((y[1:end - 1].^2) .* (abs.(x[2:end] - x[1:end - 1])))
+    return y/sqrt(integral)
+end
+
 μ_exp=0.140;mp_exp=0.938;mn_exp=0.939;hbarc=0.1973269804;
 
 function exponential_V!(du,u,p,r;U0=1.4132604267565418,μ=μ_exp)
